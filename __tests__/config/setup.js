@@ -2,4 +2,5 @@
 
 const { db } = require('../../src/auth/models');
 
+// module.exports = () => 
 db.sync();
