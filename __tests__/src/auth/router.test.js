@@ -3,7 +3,7 @@
 process.env.SECRET = 'toes';
 
 const supertest = require('supertest');
-const server = require('../../../src/server.js');
+const server = require('../../../src/server.js').server;
 const { db } = require('../../../src/auth/models/index.js');
 
 const mockRequest = supertest(server);
@@ -14,14 +14,13 @@ let users = {
   user: { username: 'user', password: 'password' },
 };
 
-beforeAll(async () => {
+beforeAll(async (done) => {
   await db.sync();
-  
+  done();
 });
-
-afterAll(async () => {
+afterAll(async (done) => {
   await db.drop();
-
+  done();
 });
 
 describe('Auth Router', () => {
