@@ -6,8 +6,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 // Esoteric Resources
-const errorHandler = require('./error-handlers/500.js');//need to create file and export
-const notFound = require('./error-handlers/404.js'); //need to create file and export
+const errorHandler = require('./error-handlers/500.js');
+const notFound = require('./error-handlers/404.js');
 const authRoutes = require('./auth/routes.js');
 
 // Prepare the express app
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(authRoutes);
 
 // Catchalls
-app.use(notFound);
+app.use('*', notFound);
 app.use(errorHandler);
 
 module.exports = {
